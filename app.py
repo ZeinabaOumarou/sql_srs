@@ -9,7 +9,6 @@ orange juice,2.5
 Expresso,2
 Tea,3
 '''
-
 beverages = pd.read_csv(io.StringIO(csv))
 
 csv2 = '''
@@ -18,7 +17,6 @@ cookie juice,2.5
 chocolatine,2
 muffin,3
 '''
-
 food_items = pd.read_csv(io.StringIO(csv2))
 
 answer = """
@@ -26,6 +24,18 @@ SELECT * FROM beverages
 CROSS JOIN food_items
 """
 solution = db.sql(answer).df()
+
+st.write(""" SQL SRS
+Spaced Repetition System to practice SQL 
+""")
+with st.sidebar:
+    option = st.selectbox(
+        "What would you like to review",
+        ("Joins", "GroupBY", "Window Functions"),
+        index=None,
+        placeholder="Select a theme")
+    st.write("You selected:", option)
+
 
 st.header("Entrez votre code :")
 query = st.text_area(label="Votre code SQL ici", key="user_input")
